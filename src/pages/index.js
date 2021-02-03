@@ -19,6 +19,22 @@ export default function Home({items}) {
           <a href="https://www.nasa.gov/">NASA</a>
         </h1>
 
+        <input  id="searchBar"
+                onChange={(e) => setSearch(e.target.value) }
+                className="searchInput"
+                placeholder="search"
+        />
+
+        <button disabled={search == ""}
+                className="button"
+                onClick={ async () => {
+                  const results = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${search}`);
+                  const previews = await results.json();
+                  setPhotos(await previews.collection.items)
+                }} 
+        >
+          FIND
+        </button>
 
         <div className={styles.grid} >
           {
