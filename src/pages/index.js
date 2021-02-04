@@ -1,56 +1,64 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import Head from 'next/head';
 import ImagePreview from '../components/ImgPreview';
+import { Container, Main, Background, H1,
+  SearchInput, SearchBtn, Grid, Footer
+} from '../containers/Landing/style';
+import styles from '../styles/Home.module.css'
 
 
-export default function Home({items}) {
-  const [search, setSearch] = useState("");
-  const [photos, setPhotos] = useState(items)
+export default function Landing({items}) {
+  const [input, setInput] = useState("");
+  const [images, setImages] = useState(items);
+  const [enableBtn, setEnableBtn] = useState(true);
+  const send = async () => {
+    console.log(input)
+    const results = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${input}`);
+    const previews = await results.json();
+    setImages(await previews.collection.items)
+  }
+  const handleInput = (e) => {
+    setEnableBtn(e.target.value.length < 1)
+    setInput(e.target.value)
+  }
   return (
-    <div className={styles.container}>
+    <Container>
       <Head>
         <title>NASA Gallery App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          <a href="https://www.nasa.gov/">NASA</a>
-        </h1>
-
-        <input  id="searchBar"
-                onChange={(e) => setSearch(e.target.value) }
-                className="searchInput"
-                placeholder="search"
+      <Main>
+        <Background />
+        <H1>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.nasa.gov/">NASA 
+          </a>  Image Finder
+           
+        </H1>
+        <SearchInput
+                onChange={handleInput}
+                placeholder="search (ex: saturn)"
         />
-
-        <button disabled={search == ""}
+        <SearchBtn disabled={enableBtn}
                 className="button"
-                onClick={ async () => {
-                  const results = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${search}`);
-                  const previews = await results.json();
-                  setPhotos(await previews.collection.items)
-                }} 
+                onClick={send}
         >
           FIND
-        </button>
-
-        <div className={styles.grid} >
+        </SearchBtn>
+        <Grid>
           {
-            photos && photos.map((preview) =>(
+            images && images.map((preview) =>(
               <ImagePreview key={preview.data[0].nasa_id}
                 imgUrl={preview.links[0].href}
                 nasaId={preview.data[0].nasa_id}
               />
             ))
           }
-        </div>
-        
-
-      </main>
-
-      <footer className={styles.footer}>
+        </Grid>
+      </Main>
+      <Footer>
         <a
           href="https://github.com/yaitalla/NASA-gallery"
           target="_blank"
@@ -58,8 +66,8 @@ export default function Home({items}) {
         >
           source code
         </a>
-      </footer>
-    </div>
+      </Footer>
+    </Container>
   )
 }
 
