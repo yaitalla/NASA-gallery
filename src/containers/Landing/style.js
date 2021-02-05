@@ -7,6 +7,7 @@ export const Container = styled.article`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 10px solid yellow;
 `;
 
 export const Main = styled.main`
@@ -21,11 +22,10 @@ export const Main = styled.main`
 export const Background = styled.div`
     position: absolute;
     background: black;
-    opacity: 0.2;
+    opacity: 0.5;
     width: 100%;
     height: 100%;
     top: 0;
-    min-height: 100vh;
     left: 0;
 `;
 

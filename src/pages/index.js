@@ -23,12 +23,13 @@ export default function Landing({items}) {
   }
   return (
     <Container>
+      <Background>
+      </Background>
       <Head>
         <title>NASA Gallery App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main>
-        <Background />
         <H1>
           <a
             target="_blank"
