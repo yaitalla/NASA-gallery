@@ -98,16 +98,6 @@
   opacity: 40%;
 }
 
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  grid-column-gap: 10px;
-  max-width: 800px;
-  margin-top: 3rem;
-}
-
 .card {
   margin: 1rem;
   flex-basis: 45%;

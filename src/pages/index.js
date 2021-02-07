@@ -6,7 +6,6 @@ import { Container, Main, Background, H1,
 } from '../containers/Landing/style';
 import styles from '../styles/Home.module.css'
 
-
 export default function Landing({items}) {
   const [input, setInput] = useState("");
   const [images, setImages] = useState(items);
@@ -22,9 +21,8 @@ export default function Landing({items}) {
     setInput(e.target.value)
   }
   return (
-    <Container>
-      <Background>
-      </Background>
+    <Container id="articles">
+      <Background src={'/spacebg.jpeg'} className="backgroundImg" />
       <Head>
         <title>NASA Gallery App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -49,6 +47,7 @@ export default function Landing({items}) {
           FIND
         </SearchBtn>
         <Grid>
+          
           {
             images && images.map((preview) =>(
               <ImagePreview key={preview.data[0].nasa_id}

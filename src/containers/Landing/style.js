@@ -1,5 +1,14 @@
 import styled, {keyframes} from 'styled-components';
 
+const rotate = keyframes`
+    0% {
+        transform: rotateZ(0);
+    }
+    100% {
+        transform: rotateZ(60deg) translateX(-50%);
+    }
+`;
+
 export const Container = styled.article`
     min-height: 100vh;
     padding: 0 0.5rem;
@@ -7,26 +16,27 @@ export const Container = styled.article`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 10px solid yellow;
+`;
+
+export const Background = styled.div`
+    position: fixed;
+    background: url(${'/spacebg.jpeg'});
+    opacity: 0.6;
+    z-index: -1;
+    height: 400%;
+    width: 300%;
+    top: -30%;
+    left: -30%;
+    animation: ${rotate} 360s linear infinite; 
 `;
 
 export const Main = styled.main`
-    padding: 5rem 0;
-    flex: 1;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`;
-
-export const Background = styled.div`
-    position: absolute;
-    background: black;
-    opacity: 0.5;
     width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
 `;
 
 export const H1 = styled.h1`
@@ -59,13 +69,15 @@ export const SearchBtn = styled.button`
 `;
 
 export const Grid = styled.section`
-    display: flex;
-    align-items: center;
+    display: grid;
     justify-content: center;
+    grid-template-columns: 300px 300px;
+    flex-direction: column;
     flex-wrap: wrap;
-    grid-column-gap: 10px;
-    max-width: 800px;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
     margin-top: 3rem;
+    width: 100%;
     @media (max-width: 600px) {
         width: 100%;
         flex-direction: column;
