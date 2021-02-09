@@ -1,6 +1,7 @@
 import {useRouter} from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Wrap, ImgWrap, BtnWrap, Btn } from '../../components/Frame/style';
 
 const Photo = ({photo}) => {
     const router = useRouter();
@@ -8,8 +9,8 @@ const Photo = ({photo}) => {
         return <div>ERROR 404 PAGE NOT FOUND</div>
     }
     return (
-        <div>
-            <div>
+        <Wrap>
+            <ImgWrap>
                 {
                     router.isFallback ? (
                         <div>Loading...</div>
@@ -17,15 +18,15 @@ const Photo = ({photo}) => {
                         <Image width={960} height={540} src={photo} />
                     )
                 }
-            </div>
+            </ImgWrap>
             <div >
                 <Link href="/" >
                     <a>
-                        <button>Back</button>
+                        <Btn>Back</Btn>
                     </a>
                 </Link>
             </div>
-        </div>
+        </Wrap>
     )
 }
 

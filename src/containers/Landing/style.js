@@ -21,7 +21,6 @@ export const Container = styled.article`
 export const Background = styled.div`
     position: fixed;
     background: url(${'/spacebg.jpeg'});
-    opacity: 0.6;
     z-index: -1;
     height: 400%;
     width: 300%;
@@ -40,7 +39,8 @@ export const Main = styled.main`
 `;
 
 export const H1 = styled.h1`
-
+    color: white;
+    font-size: 2rem;
 `;
 
 export const SearchInput = styled.input`
@@ -91,4 +91,5 @@ export const Footer = styled.footer`
     display: flex;
     justify-content: center;
     align-items: center;
+    background: silver;
 `;
