@@ -20,7 +20,7 @@ export const Container = styled.article`
 
 export const Background = styled.div`
     position: fixed;
-    background: url(${'/spacebg.jpeg'});
+    background: #0D1117;
     z-index: -1;
     height: 400%;
     width: 300%;
